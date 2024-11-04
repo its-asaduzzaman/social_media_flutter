@@ -3,14 +3,16 @@ import 'package:social_media_flutter/components/my_button.dart';
 import 'package:social_media_flutter/components/my_textfield.dart';
 
 class RegisterPage extends StatelessWidget {
+  final void Function()? onTop;
+
+  RegisterPage({super.key, required this.onTop});
+
   // Text controllers
   final TextEditingController fullNameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController =
       TextEditingController();
-
-  RegisterPage({super.key});
 
   void register() {
     // Registration logic here
@@ -89,9 +91,7 @@ class RegisterPage extends StatelessWidget {
                     style: TextStyle(fontSize: 16),
                   ),
                   GestureDetector(
-                    onTap: () {
-                      // Define action when "Login here" is tapped, such as navigating back to the login page
-                    },
+                    onTap: onTop,
                     child: const Text(
                       "Login here",
                       style: TextStyle(

@@ -3,13 +3,15 @@ import 'package:social_media_flutter/components/my_button.dart';
 import 'package:social_media_flutter/components/my_textfield.dart';
 
 class LoginPage extends StatelessWidget {
+  final void Function()? onTop;
+
+  LoginPage({super.key, required this.onTop});
+
   //text controller
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  login() {}
-
-  LoginPage({super.key});
+  void login() {}
 
   @override
   Widget build(BuildContext context) {
@@ -80,9 +82,7 @@ class LoginPage extends StatelessWidget {
                     style: TextStyle(fontSize: 16),
                   ),
                   GestureDetector(
-                    onTap: () {
-                      // Define action when "Register here" is tapped
-                    },
+                    onTap: onTop,
                     child: const Text(
                       "Register here",
                       style: TextStyle(

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:social_media_flutter/pages/home_page.dart';
-import 'package:social_media_flutter/pages/login_page.dart';
-import 'package:social_media_flutter/pages/register_page.dart';
 import 'package:social_media_flutter/theme/dark_mode.dart';
 import 'package:social_media_flutter/theme/light_mode.dart';
+
+import 'auth/login_or_register.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +17,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      home: RegisterPage(),
+      home: const LoginOrRegisterPage(),
       theme: lightMode,
       darkTheme: darkMode,
     );
