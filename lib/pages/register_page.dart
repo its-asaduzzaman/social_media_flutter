@@ -2,14 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:social_media_flutter/components/my_button.dart';
 import 'package:social_media_flutter/components/my_textfield.dart';
 
-class LoginPage extends StatelessWidget {
-  //text controller
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+class RegisterPage extends StatelessWidget {
+  // Text controllers
+  final TextEditingController fullNameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController =
+      TextEditingController();
 
-  login() {}
+  RegisterPage({super.key});
 
-  LoginPage({super.key});
+  void register() {
+    // Registration logic here
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,70 +26,74 @@ class LoginPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              //logo
+              // Logo
               Icon(
-                Icons.person,
+                Icons.person_add,
                 color: Theme.of(context).colorScheme.inversePrimary,
                 size: 80,
               ),
               const SizedBox(height: 25),
-              //app name
+              // App name or Title
               const Text(
-                "M I N I M A L",
+                "M I N I M A L - Register",
                 style: TextStyle(fontSize: 20),
               ),
 
-              //email text field
+              // Full name text field
               const SizedBox(height: 50),
               MyTextField(
-                hintText: "email",
+                hintText: "Full Name",
+                obscureText: false,
+                controller: fullNameController,
+              ),
+
+              // Email text field
+              const SizedBox(height: 10),
+              MyTextField(
+                hintText: "Email",
                 obscureText: false,
                 controller: emailController,
               ),
 
-              //password text field
+              // Password text field
               const SizedBox(height: 10),
               MyTextField(
-                hintText: "password",
+                hintText: "Password",
                 obscureText: true,
                 controller: passwordController,
               ),
 
-              //forgot password
+              // Confirm password text field
               const SizedBox(height: 10),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Text(
-                    "Forgot Password?",
-                    style: TextStyle(
-                        color: Theme.of(context).colorScheme.secondary),
-                  ),
-                ],
+              MyTextField(
+                hintText: "Confirm Password",
+                obscureText: true,
+                controller: confirmPasswordController,
               ),
-              const SizedBox(height: 25),
-              //sign in button
 
+              const SizedBox(height: 25),
+
+              // Register button
               MyButton(
-                text: "Login",
-                onTap: login,
+                text: "Register",
+                onTap: register,
               ),
               const SizedBox(height: 25),
 
-              //don't have an account ? register here
+              // Already have an account? Login here
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text(
-                    "Don't have an account? ",
+                    "Already have an account? ",
                     style: TextStyle(fontSize: 16),
                   ),
                   GestureDetector(
                     onTap: () {
-                      // Define action when "Register here" is tapped
+                      // Define action when "Login here" is tapped, such as navigating back to the login page
                     },
                     child: const Text(
-                      "Register here",
+                      "Login here",
                       style: TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
