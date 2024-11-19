@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:social_media_flutter/components/my_back_button.dart';
 
 class ProfilePage extends StatelessWidget {
   ProfilePage({super.key});
@@ -19,9 +20,6 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Profile page"),
-      ),
       backgroundColor: Theme.of(context).colorScheme.surface,
       body: FutureBuilder<DocumentSnapshot<Map<String, dynamic>>>(
         future: getUserDetails(),
@@ -45,9 +43,45 @@ class ProfilePage extends StatelessWidget {
 
             return Center(
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text(user!['email']),
-                  Text(user['username']),
+                  //back button
+                  const Padding(
+                    padding: EdgeInsets.only(left: 24.0, top: 50),
+                    child: Row(
+                      children: [
+                        MyBackButton(),
+                      ],
+                    ),
+                  ),
+                  //profile pic
+                  Container(
+                    padding: const EdgeInsets.all(25),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(24),
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+                    child: const Icon(
+                      Icons.person,
+                      size: 64,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 25,
+                  ),
+
+                  //user name
+                  Text(
+                    user!['username'],
+                    style: const TextStyle(
+                        fontSize: 24, fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    user['email'],
+                    style: const TextStyle(
+                      color: Colors.grey,
+                    ),
+                  ),
                 ],
               ),
             );

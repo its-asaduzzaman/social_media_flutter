@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:social_media_flutter/components/my_back_button.dart';
 import 'package:social_media_flutter/helper/helper_function.dart';
 
 class UserPage extends StatelessWidget {
@@ -8,9 +9,6 @@ class UserPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("User page"),
-      ),
       backgroundColor: Theme.of(context).colorScheme.surface,
       body: StreamBuilder(
         stream: FirebaseFirestore.instance.collection("Users").snapshots(),
@@ -32,17 +30,31 @@ class UserPage extends StatelessWidget {
 
           //get all users
           final users = snapshot.data!.docs;
-          return ListView.builder(
-            itemCount: users.length,
-            itemBuilder: (context, index) {
-              //get individual user
-              final user = users[index];
-              return ListTile(
-                title: Text(user['username']),
-                subtitle: Text(user['email']),
-
-              );
-            },
+          return Column(
+            children: [
+              const Padding(
+                padding: EdgeInsets.only(top: 50, left: 25),
+                child: Row(
+                  children: [
+                    MyBackButton(),
+                  ],
+                ),
+              ),
+              Expanded(
+                child: ListView.builder(
+                  padding: const EdgeInsets.all(0),
+                  itemCount: users.length,
+                  itemBuilder: (context, index) {
+                    //get individual user
+                    final user = users[index];
+                    return ListTile(
+                      title: Text(user['username']),
+                      subtitle: Text(user['email']),
+                    );
+                  },
+                ),
+              ),
+            ],
           );
         },
       ),
